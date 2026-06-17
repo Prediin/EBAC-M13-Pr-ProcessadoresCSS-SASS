@@ -1,0 +1,29 @@
+$cor-primaria: rgb(117, 117, 225);
+$espacamento-padrao: 20px;
+
+.cabecalho {
+    background: $cor-primaria;
+    color: white;
+    padding: $espacamento-padrao;
+
+    &__titulo {
+        text-align: center;
+    }
+}
+
+.conteudo {
+    padding: $espacamento-padrao;
+
+    &__paragrafo {
+        font-size: 10px;
+    }
+
+    &__link {
+        color: $cor-primaria;
+        text-decoration: none;
+
+        &hover {
+            text-decoration: underline;
+        }
+    }
+}

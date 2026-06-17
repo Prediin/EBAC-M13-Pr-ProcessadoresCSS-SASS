@@ -1,0 +1,24 @@
+.cabecalho {
+  background: rgb(117, 117, 225);
+  color: white;
+  padding: 20px;
+}
+.cabecalho__titulo {
+  text-align: center;
+}
+
+.conteudo {
+  padding: 20px;
+}
+.conteudo__paragrafo {
+  font-size: 10px;
+}
+.conteudo__link {
+  color: rgb(117, 117, 225);
+  text-decoration: none;
+}
+.conteudo__linkhover {
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=estilos.css.map */
