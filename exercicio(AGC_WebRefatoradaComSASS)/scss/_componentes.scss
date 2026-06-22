@@ -1,6 +1,341 @@
-@use 'variaveis' as *;
-@use 'mixins' as *;
+@use 'variaveis' as v;
+@use 'sass:list';
 
-/* Componentes adicionais podem ser incluídos aqui.
-   A maior parte dos componentes visuais já está organizada em _layout.scss
-   para manter a estrutura do projeto fiel ao HTML original. */
+.cabecalho {
+    grid-area: header;
+    transition: v.$transition-slow;
+    display: grid;
+    position: fixed;
+    z-index: 1;
+    width: 100vw;
+    grid-template-areas:
+        'img h1 h1'
+        'img nav nav';
+    background: linear-gradient(90deg, v.$prussias-blue, v.$black);
+    color: v.$white;
+    padding: 0.8em;
+    margin: 0;
+    box-shadow: v.$shadow-box;
+
+    &__logo {
+        transition: v.$transition-slow;
+        grid-area: img;
+        margin: 0 0.8em 0 0;
+        width: 5em;
+    }
+
+    &__titulo {
+        transition: v.$transition-slow;
+        grid-area: h1;
+        text-align: left;
+        font-weight: bolder;
+        font-size: 2em;
+        opacity: 1;
+    }
+
+    &__navegacao {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        transition: v.$transition-slow;
+        grid-area: nav;
+    }
+
+    &__link {
+        transition: v.$transition-slow;
+        font-size: 0.9em;
+        color: v.$white;
+        text-decoration: none;
+        margin: 0 0.8em 0 0;
+    }
+
+    &__icone {
+        transition: all 0.1s ease-in-out;
+        width: 0;
+        margin: 0;
+    }
+
+    &--fixo {
+        grid-template-areas:
+            'img nav h1';
+        width: 100vw;
+        background: linear-gradient(0deg, v.$prussias-blue-dark, rgba(0, 0, 0, 0.822));
+
+        .cabecalho__logo {
+            width: 3em;
+            margin-left: 0;
+        }
+
+        .cabecalho__titulo {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            font-size: 0.8em;
+        }
+
+        .cabecalho__navegacao {
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .cabecalho__link {
+            font-size: 0;
+        }
+
+        .cabecalho__icone {
+            width: 1.5em;
+            height: 1.5em;
+            font-size: initial;
+            margin: 0 0.5em;
+
+            &:active {
+                filter: drop-shadow(0px 0px 5px v.$white);
+                transform: scale(0.9);
+            }
+        }
+    }
+}
+
+.titulo-destaque {
+    text-align: center;
+    font-size: 1.2em;
+    background: v.$emerald;
+    color: v.$prussias-blue;
+    margin: 0 -0.9em 0.5em -0.9em;
+    padding: 0.4em 0;
+    border-radius: 0.8em 0.8em 0 0;
+}
+
+.titulo-secao {
+    color: v.$emerald;
+    font-size: 2em;
+}
+
+.lista-valores {
+    width: 18em;
+    text-align: center;
+    padding: 0 1em 1em 1em;
+    margin: 0.8em auto;
+    background: radial-gradient(v.$prussias-blue, v.$black);
+    border: 2px solid v.$honey-bronze;
+    border-radius: 1.3em;
+    box-shadow: 0 0 15px rgb(from v.$honey-bronze r g b / 50%);
+
+    &__itens {
+        list-style: none;
+    }
+
+    &__item {
+        text-align: left;
+        font-size: 1.1em;
+        background: linear-gradient(90deg, v.$honey-bronze, rgba(255, 255, 255, 0));
+        color: rgb(255, 242, 203);
+        margin: 0.2em 0;
+        padding: 0.2em 0 0.2em 0.5em;
+        border-radius: 1em 0 0 1em;
+    }
+}
+
+.cartao-servico {
+    transition: v.$transition-default;
+    position: relative;
+    width: 18em;
+    height: 9em;
+    padding: 0.7em;
+    margin: 1em auto;
+    border-radius: 0.8em;
+    border: 2px solid v.$emerald;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.801);
+
+    &:hover {
+        transform: scale(1.05);
+        height: 12em;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.486);
+    }
+
+    &__titulo {
+        text-align: center;
+        font-size: 1.2em;
+        color: rgba(0, 0, 0, 0.815);
+        margin: -0.7em -0.7em 0.5em -0.7em;
+        padding: 0.4em;
+        border-radius: 0.8em 0.8em 0 0;
+    }
+
+    &__descricao {
+        position: absolute;
+        font-size: 1.1em;
+        top: 40%;
+    }
+
+    &--design {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.151), rgba(0, 0, 0, 0.884)),
+                    url(IMGS/design-grafico-medio.jpg);
+        background-size: cover;
+        background-position: center;
+        border-color: v.$white;
+
+        .cartao-servico__titulo {
+            background: v.$white;
+        }
+    }
+
+    &--web {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.151), rgba(0, 0, 0, 0.884)),
+                    url(IMGS/dev-web-media.jpeg);
+        background-size: cover;
+        background-position: top;
+        border-color: rgb(list.nth(v.$sky-surge-rgb, 1), list.nth(v.$sky-surge-rgb, 2), list.nth(v.$sky-surge-rgb, 3));
+
+        .cartao-servico__titulo {
+            background-color: rgb(list.nth(v.$sky-surge-rgb, 1), list.nth(v.$sky-surge-rgb, 2), list.nth(v.$sky-surge-rgb, 3));
+        }
+    }
+
+    &--branding {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.151), rgba(0, 0, 0, 0.884)),
+                    url(IMGS/branding-media.jpeg);
+        background-size: cover;
+        background-position: center;
+        border-color: rgb(255, 153, 20);
+
+        .cartao-servico__titulo {
+            background: rgb(255, 153, 20);
+        }
+    }
+
+    &--marketing {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.151), rgba(0, 0, 0, 0.884)),
+                    url(IMGS/marketing-media.jpeg);
+        background-size: cover;
+        background-position: center;
+        border-color: rgb(166, 71, 255);
+
+        .cartao-servico__titulo {
+            background: rgb(166, 71, 255);
+        }
+    }
+}
+
+.cartao-depoimento {
+    transition: v.$transition-default;
+    display: grid;
+    grid-template-areas:
+        'img span'
+        'img p';
+    width: 95%;
+    padding: 0.5em;
+    margin: 0.8em 0;
+    background: linear-gradient(v.$emerald, v.$emerald-dark);
+    color: v.$black;
+    border-radius: 1.2em;
+    border: 2px solid v.$emerald;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.363);
+
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px v.$emerald;
+    }
+
+    &__foto {
+        grid-area: img;
+        width: 3.5em;
+        border-radius: 50%;
+        border: 2px solid v.$emerald;
+        filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.692));
+    }
+
+    &__texto {
+        grid-area: p;
+        font-size: 0.9em;
+        background: rgba(255, 255, 255, 0.315);
+        margin: 0 0 0 0.4em;
+        padding: 0.2em;
+        border-radius: 0.8em;
+    }
+
+    strong {
+        color: v.$emerald;
+        background: v.$prussias-blue;
+        font-size: 0.9em;
+        padding: 0.4em;
+        border-radius: 0.8em;
+    }
+
+    &__autor {
+        grid-area: span;
+        font-size: 0.9em;
+        background: rgb(from v.$prussias-blue r g b / 60%);
+        color: v.$white;
+        width: fit-content;
+        padding: 0.3em 0 0.3em 0.3em;
+        margin: 0 0 0 0.2em;
+        border-radius: 0.8em;
+    }
+}
+
+.formulario {
+    display: grid;
+    grid-template-areas:
+        'lblnome lblnome'
+        'lblemail lblemail'
+        'lblmsg lblmsg'
+        'msg msg'
+        'btn btn';
+    background: radial-gradient(v.$prussias-blue, v.$black);
+    margin: 1em 0;
+    padding: 0.6em;
+    border: 1px solid v.$emerald;
+    border-radius: 1em;
+
+    &__campo {
+        padding-top: 0.4em;
+        width: fit-content;
+        color: v.$emerald;
+        font-weight: bold;
+        font-size: 1.2em;
+
+        &:nth-of-type(1) { grid-area: lblnome; }
+        &:nth-of-type(2) { grid-area: lblemail; }
+        &:nth-of-type(3) { grid-area: lblmsg; }
+    }
+
+    &__mensagem {
+        grid-area: msg;
+        font-size: 1.2em;
+        padding: 0.5em;
+        height: 7em;
+        border-radius: 1em;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    &__entrada {
+        font-weight: normal;
+        font-size: 0.8em;
+        width: fit-content;
+        padding: 0.3em;
+        border-radius: 1.2em;
+    }
+
+    &__botao {
+        transition: v.$transition-default;
+        grid-area: btn;
+        margin: 0.3em;
+        padding: 0.2em;
+        font-size: 1.4em;
+        font-weight: bold;
+        background-color: v.$emerald;
+        color: v.$prussias-blue;
+        border-radius: 1em;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            color: v.$emerald;
+            background: v.$prussias-blue;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px v.$emerald;
+        }
+    }
+}
