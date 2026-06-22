@@ -1,0 +1,24 @@
+@use 'variaveis' as *;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: $font-base;
+  background: $black;
+  overflow-x: hidden;
+}
+
+strong {
+  background: rgb(from $sky-surge r g b / 40%);
+  color: $white;
+  padding: 0.05em 0.1em;
+}

@@ -1,0 +1,23 @@
+@mixin flex-center($direction: row, $justify: center, $align: center, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+@mixin botao-base($background, $color) {
+  background: $background;
+  color: $color;
+  border: none;
+  border-radius: 1em;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@mixin card-base($border-color, $background, $radius: $raio-medio) {
+  border: 2px solid $border-color;
+  background: $background;
+  border-radius: $radius;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+}
